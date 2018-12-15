@@ -28,7 +28,6 @@ class UrlForm extends React.Component {
       url: '/urls/create',
       data: payload,
     }).done((data) => {
-      console.log(data);
       this.setState({
         shortUrl: data.link.short_url
       })
@@ -55,7 +54,9 @@ class UrlForm extends React.Component {
           />
           <button type="submit">Enter</button>
         </form>
-        <p>Short Url: {this.state.shortUrl}</p>
+        <p>Short Url:
+          <a href={this.state.shortUrl}>{this.state.shortUrl}</a>
+        </p>
       </div>
     );
   }

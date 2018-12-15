@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   get 'urls/new'
   post 'urls/create'
   # resources :urls
-  # match '/load',      to: 'load#create',        via: 'post'
+  get '/hz/:short_url', to: 'urls#show'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
