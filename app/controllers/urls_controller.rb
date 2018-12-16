@@ -1,13 +1,10 @@
 class UrlsController < ApplicationController
   def create
-    url = params[:url]
-    url_model = Url.find_by(url: url)
-    if url_model.nil?
-      url_model = Url.create(
-        url: url,
-        short_url: "#{request.base_url}/hz/#{SecureRandom.urlsafe_base64(10, false)}"
-      )
-    end
+    url = formatUrl(params[:url])
+    puts url
+    url_model = Url.where(url: url)
+      .first_or_create(short_url: "#{request.base_url}/hz/#{SecureRandom.urlsafe_base64(10, false)}")
+
     response = {
       :link => {
         :url => url_model.url,
@@ -26,5 +23,11 @@ class UrlsController < ApplicationController
     url_model = Url.find_by(short_url: short_url)
 
     redirect_to url_model.url
+  end
+
+  def formatUrl(url)
+    if !url.index("http://")
+      return "http://#{url}"
+    end
   end
 end

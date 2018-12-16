@@ -21,7 +21,6 @@ class UrlsControllerTest < ActionDispatch::IntegrationTest
 
     post urls_create_url, params: { :url => url }, xhr: true
     resp = JSON.parse @response.body
-    puts short_url
 
     assert_response :success
     assert_equal short_url, resp["link"]["short_url"]
