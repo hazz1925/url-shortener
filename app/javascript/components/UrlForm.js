@@ -23,8 +23,6 @@ class UrlForm extends React.Component {
 
     $.ajax({
       method: 'POST',
-      // dataType: 'json',
-      // contentType: 'application/json',
       url: '/urls/create',
       data: payload,
     }).done((data) => {
